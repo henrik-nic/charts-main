@@ -872,6 +872,11 @@ aggregator:
         port {{ .Values.metrics.service.port }}
       </source>
 
+      <source>
+        @type prometheus
+        port 24231
+      </source>
+
       # input plugin that collects metrics from MonitorAgent
       <source>
         @type prometheus_monitor
