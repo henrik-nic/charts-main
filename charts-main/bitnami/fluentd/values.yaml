@@ -256,11 +256,29 @@ forwarder:
         </buffer>
       </match>
       {{- else }}
-      # Send the logs to the standard output
+      # Send logs to MondoDB
       <match **>
-        @type stdout
+        @type mongodb
+        host mongodb-hostname # replace with the actual MongoDB hostname or service name
+        port 27017 # default MongoDB port
+        database fluentd_logs
+        collection logs
+        user fluentd-user # replace with MongoDB username if authentication is enabled
+        password fluentd-password # replace with MongoDB password if authentication is enabled
+        # Optional: Create indexes for better performance (optional)
+        <buffer>
+          @type memory
+          flush_interval 5s
+          chunk_limit_size 5m
+        </buffer>
       </match>
       {{- end }}
+      
+#      # Send the logs to the standard output
+#      <match **>
+#        @type stdout
+#      </match>
+#      {{- end }}
     metrics.conf: |
       # Prometheus Exporter Plugin
       # input plugin that exports metrics
