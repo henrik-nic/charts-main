@@ -1226,7 +1226,7 @@ aggregator:
   ## @param aggregator.resourcesPreset Set container resources according to one common preset (allowed values: none, nano, micro, small, medium, large, xlarge, 2xlarge). This is ignored if aggregator.resources is set (aggregator.resources is recommended for production).
   ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
   ##
-  resourcesPreset: "nano"
+  resourcesPreset: "vi"
   ## @param aggregator.resources Set container requests and limits for different resources like CPU or memory (essential for production workloads)
   ## Example:
   ## resources:
@@ -1324,9 +1324,9 @@ aggregator:
   ## @param aggregator.autoscaling.behavior HPA Behavior
   ##
   autoscaling:
-    enabled: false
-    minReplicas: 2
-    maxReplicas: 5
+    enabled: enable
+    minReplicas: 1
+    maxReplicas: 3
     metrics:
       - type: Resource
         resource:
@@ -1396,7 +1396,7 @@ aggregator:
   ## @param aggregator.initResourcePresets Set container resources according to one common preset (allowed values: none, nano, micro, small, medium, large, xlarge, 2xlarge). This is ignored if aggregator.resources is set (aggregator.resources is recommended for production).
   ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
   ##
-  initResourcePresets: "nano"
+  initResourcePresets: "vi"
   ## @param aggregator.initResources Set container requests and limits for different resources like CPU or memory (essential for production workloads)
   ## Example:
   ## initResources:
@@ -1475,7 +1475,7 @@ aggregator:
 metrics:
   ## @param metrics.enabled Enable the export of Prometheus metrics
   ##
-  enabled: false
+  enabled: enable
   ## Prometheus Exporter service parameters
   ##
   service:
@@ -1528,7 +1528,7 @@ metrics:
   serviceMonitor:
     ## @param metrics.serviceMonitor.enabled if `true`, creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be `true`)
     ##
-    enabled: false
+    enabled: enable
     ## @param metrics.serviceMonitor.namespace Namespace in which Prometheus is running
     ##
     namespace: ""
